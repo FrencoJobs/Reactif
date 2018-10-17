@@ -21,5 +21,11 @@
   "bugs": {
     "url": "https://github.com/FrencoJobs/Reactif/issues"
   },
-  "homepage": "https://github.com/FrencoJobs/Reactif#readme"
+  "homepage": "https://github.com/FrencoJobs/Reactif#readme",
+  "devDependencies": {
+    "babel-core": "6.26.3",
+    "babel-preset-env": "1.7.0",
+    "grunt": "1.0.3",
+    "grunt-babel": "8.0.0"
+  }
 }
