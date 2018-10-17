@@ -1,0 +1,25 @@
+{
+  "name": "reactif",
+  "version": "0.0.1",
+  "description": "Give you the reactivity power just by simply allowing you to interpolate through the the objects by proxying",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrencoJobs/Reactif.git"
+  },
+  "keywords": [
+    "Reactivity",
+    "Proxy",
+    "Getter",
+    "Setter"
+  ],
+  "author": "Frenco Jobs <frenco.willian@gmail.com> (https://frencojobs.ga)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FrencoJobs/Reactif/issues"
+  },
+  "homepage": "https://github.com/FrencoJobs/Reactif#readme"
+}
