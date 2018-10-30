@@ -7,7 +7,7 @@
   "browser": "dist/reactif.umd.js",
   "scripts": {
     "commit": "git-cz",
-    "test:once": "jest",
+    "test": "jest",
     "test:watch": "jest --watchAll",
     "coverage": "jest --coverage",
     "prebuild": "rimraf dist",

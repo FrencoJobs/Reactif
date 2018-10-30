@@ -12,7 +12,7 @@ node_js:
 before_script:
   - npm prune
 scripts:
-  - npm run test:once
+  - npm test
 after_success:
   - npm run build
   - npm run travis-deploy-once "npm run semantic-release"
