@@ -1,5 +1,5 @@
 {
-  "name": "reactif",
+  "name": "reactif-core",
   "version": "0.0.0-development",
   "description": "Give you the reactivity power just by simply allowing you to interpolate through the the objects by proxying",
   "main": "dist/reactif.common.js",
@@ -58,7 +58,7 @@
       "path": "./node_modules/cz-conventional-changelog"
     },
     "ghooks": {
-      "pre-commit": "npm run test:once"
+      "pre-commit": "npm test"
     }
   }
 }
