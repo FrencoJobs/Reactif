@@ -1,6 +1,6 @@
 {
   "name": "reactif-core",
-  "version": "1.0.4",
+  "version": "1.0.3",
   "description": "Give you the reactivity power just by simply allowing you to interpolate through the the objects by proxying",
   "main": "dist/reactif.common.js",
   "module": "dist/reactif.esm.js",
