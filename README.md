@@ -1,6 +1,6 @@
 # Reactif
 
-[![Travis (.org)](https://img.shields.io/travis/FrencoJobs/Reactif.svg?style=flat-square)](https://travis-ci.org/FrencoJobs/Reacitf)
+[![Travis (.org)](https://img.shields.io/travis/FrencoJobs/Reactif.svg?style=flat-square)](https://travis-ci.org/FrencoJobs/Reactif)
 [![Codecov](https://img.shields.io/codecov/c/github/FrencoJobs/Reactif.svg?style=flat-square)](https://codecov.io/gh/FrencoJobs/Reactif)
 [![npm bundle size (minified)](https://img.shields.io/bundlephobia/min/reactif-core.svg?style=flat-square)](https://npm.im/reactif-core)
 [![GitHub](https://img.shields.io/github/license/FrencoJobs/Reactif.svg?style=flat-square)](LICENSE)
