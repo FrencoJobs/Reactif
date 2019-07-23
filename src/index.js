@@ -7,8 +7,8 @@ import {
   depManager,
   isObject,
   err,
-  recommend
-} from './utils'
+  recommend,
+} from "./utils"
 
 let Interpolaters = {}
 export let Variables = $$Variables
@@ -19,7 +19,7 @@ export let Variables = $$Variables
  * @param {Function} associator allow the user to pass the functions, asscoiated the reactive object
  * @returns Object
  */
-export function act (reactable, associator) {
+export function act(reactable, associator) {
   let map = createMap({})
   let commonMap = createArrayMap({})
   let states = JSON.parse(JSON.stringify(reactable))
@@ -27,64 +27,80 @@ export function act (reactable, associator) {
   let observableMap = createObservableMap(map)
   if (isProxySupported && !Variables.__polyfillTest__) {
     return new Proxy(reactable, {
-      get (target, prop) {
-        if (commonMap.getter.length > 0) commonMap.getter.forEach(work => work.bind(target)(target, prop))
+      get(target, prop) {
+        if (commonMap.getter.length > 0)
+          commonMap.getter.forEach(work => work.bind(target)(target, prop))
         if (observableMap.getter.hasOwnProperty(prop)) {
-          observableMap.getter[prop]
-            .subscribe({ next: w => w.bind(target)(target, prop) })
+          observableMap.getter[prop].subscribe({
+            next: w => w.bind(target)(target, prop),
+          })
         }
         return getValueOf(target[prop], target)
       },
-      set (target, prop, newValue) {
+      set(target, prop, newValue) {
         target[prop] = newValue
-        if (commonMap.setter.length > 0) commonMap.setter.forEach(work => work.bind(target)(target, prop))
+        if (commonMap.setter.length > 0)
+          commonMap.setter.forEach(work => work.bind(target)(target, prop))
         if (observableMap.setter.hasOwnProperty(prop)) {
-          observableMap.setter[prop]
-            .subscribe({ next: w => w.bind(target)(target, prop) })
+          observableMap.setter[prop].subscribe({
+            next: w => w.bind(target)(target, prop),
+          })
         }
         states[prop] = newValue
         return true
       },
-      deleteProperty (target, prop) {
+      deleteProperty(target, prop) {
         if (prop in target) {
           delete target[prop]
-          if (commonMap.deleter.length > 0) commonMap.deleter.forEach(work => work.bind(target)(target, prop))
+          if (commonMap.deleter.length > 0)
+            commonMap.deleter.forEach(work => work.bind(target)(target, prop))
           if (observableMap.deleter.hasOwnProperty(prop)) {
-            observableMap.deleter[prop]
-              .subscribe({ next: w => w.bind(target)(target, prop) })
+            observableMap.deleter[prop].subscribe({
+              next: w => w.bind(target)(target, prop),
+            })
           }
           return true
-        } else /* istanbul ignore next */{
+        } /* istanbul ignore next */ else {
           err(`Property Not Found : ${prop}`)
           return false
         }
-      }
+      },
     })
   } else {
     Object.keys(reactable).forEach(prop => {
       let interValue = reactable[prop]
       Object.defineProperty(reactable, prop, {
-        get () {
-          if (commonMap.getter.length > 0) commonMap.getter.forEach(work => work.bind(reactable)(reactable, prop))
+        get() {
+          if (commonMap.getter.length > 0)
+            commonMap.getter.forEach(work =>
+              work.bind(reactable)(reactable, prop)
+            )
           if (observableMap.getter.hasOwnProperty(prop)) {
-            observableMap.getter[prop]
-              .subscribe({ next: w => w.bind(reactable)(reactable, prop) })
+            observableMap.getter[prop].subscribe({
+              next: w => w.bind(reactable)(reactable, prop),
+            })
           }
           return getValueOf(interValue, reactable)
         },
-        set (newValue) {
+        set(newValue) {
           interValue = newValue
-          if (commonMap.setter.length > 0) commonMap.setter.forEach(work => work.bind(reactable)(reactable, prop))
+          if (commonMap.setter.length > 0)
+            commonMap.setter.forEach(work =>
+              work.bind(reactable)(reactable, prop)
+            )
           if (observableMap.setter.hasOwnProperty(prop)) {
-            observableMap.setter[prop]
-              .subscribe({ next: w => w.bind(reactable)(reactable, prop) })
+            observableMap.setter[prop].subscribe({
+              next: w => w.bind(reactable)(reactable, prop),
+            })
           }
           states[prop] = newValue
           return true
-        }
+        },
       })
     })
-    recommend(`Unfortunately, your browser doesn't support Proxy,so as a polyfill, we used ES5 getters and setters,some functions will not be available in this browser.`)
+    recommend(
+      `Unfortunately, your browser doesn't support Proxy,so as a polyfill, we used ES5 getters and setters,some functions will not be available in this browser.`
+    )
     return reactable
   }
 }
@@ -94,11 +110,11 @@ export function act (reactable, associator) {
  * @class Interpolater
  */
 export class Interpolater {
-  constructor (type, consumer) {
+  constructor(type, consumer) {
     if (!Interpolaters.hasOwnProperty(type)) {
       Interpolaters[type] = consumer
-    } else /* istanbul ignore next */{
-      err('Interpolater already exist.')
+    } /* istanbul ignore next */ else {
+      err("Interpolater already exist.")
     }
   }
 }
@@ -107,25 +123,25 @@ export class Interpolater {
  * @param {property} val
  * @param {Object} self
  */
-function getValueOf (val, self) {
+function getValueOf(val, self) {
   let result = val
-  if (isObject(val) && val.hasOwnProperty('$$type')) {
+  if (isObject(val) && val.hasOwnProperty("$$type")) {
     result = Interpolaters.hasOwnProperty(val.$$type)
       ? Interpolaters[val.$$type](val, self)
       : undefined
   }
   return result
 }
-new Interpolater('Releaser', function (config, self) {
+new Interpolater("Releaser", function(config, self) {
   return config.$$value(self)
 })
 /**
  * Release values dynamically by Releaser
  * @param {Function} fn function that will run everytime the property is called
  */
-export function Releaser (fn) {
+export function Releaser(fn) {
   return {
-    $$type: 'Releaser',
-    $$value: fn
+    $$type: "Releaser",
+    $$value: fn,
   }
 }

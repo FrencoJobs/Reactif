@@ -10,7 +10,7 @@ Reactif is a javascript library that is built with the objective of being able t
 
 ## Getting Started
 
-Learn how to get started with Reactif [here](https://reactif.js.org).
+Learn how to get started with Reactif [here](https://reactif.js.org/guide/).
 
 ### Prerequisities
 
