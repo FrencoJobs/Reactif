@@ -19,6 +19,7 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run coverage
+      - run: npm run build
 
   publish-npm:
     needs: build
@@ -45,4 +46,4 @@ jobs:
           scope: '@frencojobs'
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
