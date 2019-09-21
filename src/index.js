@@ -19,7 +19,7 @@ export let Variables = $$Variables
  * @param {Function} associator allow the user to pass the functions, asscoiated the reactive object
  * @returns Object
  */
-export function act(reactable, associator) {
+export function act(reactable, associator = (()=>{})) {
   let map = createMap({})
   let commonMap = createArrayMap({})
   let states = JSON.parse(JSON.stringify(reactable))
@@ -128,7 +128,7 @@ function getValueOf(val, self) {
   if (isObject(val) && val.hasOwnProperty("$$type")) {
     result = Interpolaters.hasOwnProperty(val.$$type)
       ? Interpolaters[val.$$type](val, self)
-      : undefined
+      : val
   }
   return result
 }

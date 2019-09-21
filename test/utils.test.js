@@ -5,7 +5,6 @@ import {
     addPropToMap,
     inBrowser,
     hasConsole,
-    $$Variables,
     Observable,
     err,
     recommend

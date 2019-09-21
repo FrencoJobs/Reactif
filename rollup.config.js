@@ -22,6 +22,7 @@ export default [
                 exclude: 'node_modules/**'
             }),
             replace({
+                delimiters: ['"', '"'],
                 exclude: 'node_modules/**',
                 ENV: JSON.stringify("development")
             })
@@ -36,8 +37,9 @@ export default [
         plugins: [
             babel(),
             replace({
+                delimiters: ['"', '"'],
                 exclude: 'node_modules/**',
-                ENV: "production"
+                ENV: JSON.stringify("production")
             }),
             uglify()
         ]

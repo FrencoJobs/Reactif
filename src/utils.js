@@ -3,7 +3,6 @@ export let inBrowser = typeof window !== "undefined"
 export let hasConsole = typeof console !== "undefined"
 export let $$Variables = {
   __polyfillTest__: false,
-  __version__: "0.0.0-development",
 }
 
 /**
@@ -39,12 +38,12 @@ if ("ENV" !== "production") {
   recommend = msg => {
     hasConsole && inBrowser
       ? console.info(
-          `%c[Reactif ${$$Variables.__version__}]: %c` + msg,
+          `%c[Reactif]: %c` + msg,
           "font-weight:bold;color:green;",
           "font-weight:bold;color:black"
         )
       : /* istanbul ignore next */
-        console.info(`[Reactif ${$$Variables.__version__}]:` + msg)
+        console.info(`[Reactif]:` + msg)
     return true
   }
 }
